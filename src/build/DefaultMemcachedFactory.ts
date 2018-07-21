@@ -1,0 +1,17 @@
+import { Factory } from 'pip-services-components-node';
+import { Descriptor } from 'pip-services-commons-node';
+
+import { MemcachedCache } from '../cache/MemcachedCache';
+import { MemcachedLock } from '../lock/MemcachedLock';
+
+export class DefaultMemcachedFactory extends Factory {
+	public static readonly Descriptor = new Descriptor("pip-services", "factory", "memcached", "default", "1.0");
+	public static readonly MemcachedCacheDescriptor = new Descriptor("pip-services", "cache", "memcached", "*", "1.0");
+	public static readonly MemcachedLockDescriptor = new Descriptor("pip-services", "lock", "memcached", "*", "1.0");
+
+	public constructor() {
+        super();
+		this.registerAsType(DefaultMemcachedFactory.MemcachedCacheDescriptor, MemcachedCache);
+		this.registerAsType(DefaultMemcachedFactory.MemcachedLockDescriptor, MemcachedLock);
+	}
+}

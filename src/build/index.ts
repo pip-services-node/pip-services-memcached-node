@@ -1,0 +1,1 @@
+export { DefaultMemcachedFactory } from './DefaultMemcachedFactory';
