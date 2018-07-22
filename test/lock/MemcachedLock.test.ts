@@ -8,8 +8,8 @@ suite('MemcachedLock', ()=> {
     var _fixture: LockFixture;
 
     setup((done) => {
-        let host = process.env['MEMCACHED_HOST'] || 'localhost';
-        let port = process.env['MEMCACHED_PORT'] || 11211;
+        let host = process.env['MEMCACHED_SERVICE_HOST'] || 'localhost';
+        let port = process.env['MEMCACHED_SERVICE_PORT'] || 11211;
 
         _lock = new MemcachedLock();
 

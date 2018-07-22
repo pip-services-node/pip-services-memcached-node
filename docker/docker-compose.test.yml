@@ -8,6 +8,9 @@ services:
     image: ${IMAGE:-pipdevs/test}
     depends_on:
       - memcached
+    environment:
+      - MEMCACHED_SERVICE_HOST=memcached
+      - MEMCACHED_SERVICE_PORT=11211
 
   memcached:
     image: memcached:latest
