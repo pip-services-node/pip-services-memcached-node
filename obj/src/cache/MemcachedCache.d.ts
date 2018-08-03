@@ -21,7 +21,7 @@ export declare class MemcachedCache implements ICache, IConfigurable, IReference
     constructor();
     configure(config: ConfigParams): void;
     setReferences(references: IReferences): void;
-    isOpened(): boolean;
+    isOpen(): boolean;
     open(correlationId: string, callback: (err: any) => void): void;
     close(correlationId: string, callback: (err: any) => void): void;
     private checkOpened;

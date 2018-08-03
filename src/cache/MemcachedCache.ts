@@ -47,7 +47,7 @@ export class MemcachedCache implements ICache, IConfigurable, IReferenceable, IO
         this._connectionResolver.setReferences(references);
     }
 
-    public isOpened(): boolean {
+    public isOpen(): boolean {
         return this._client;
     }
 
@@ -95,7 +95,7 @@ export class MemcachedCache implements ICache, IConfigurable, IReferenceable, IO
     }
 
     private checkOpened(correlationId: string, callback: any): boolean {
-        if (!this.isOpened()) {
+        if (!this.isOpen()) {
             let err = new InvalidStateException(correlationId, 'NOT_OPENED', 'Connection is not opened');
             callback(err, null);
             return false;
