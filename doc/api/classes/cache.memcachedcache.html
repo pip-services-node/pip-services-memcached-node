@@ -54,7 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="memcachedcache.html">MemcachedCache</a>
+					<a href="../modules/cache.html">cache</a>
+				</li>
+				<li>
+					<a href="cache.memcachedcache.html">MemcachedCache</a>
 				</li>
 			</ul>
 			<h1>Class MemcachedCache</h1>
@@ -64,6 +67,50 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Distributed cache that stores values in Memcaches caching service.</p>
+					</div>
+					<p>The current implementation does not support authentication.</p>
+					<h3 id="configuration-parameters">Configuration parameters</h3>
+					<p>connection(s):
+						discovery_key:         (optional) a key to retrieve the connection from [[IDiscovery]]
+						host:                  host name or IP address
+						port:                  port number
+						uri:                   resource URI or connection string with all parameters in it
+						options:
+						max_size:              maximum number of values stored in this cache (default: 1000)
+						max_key_size:          maximum key length (default: 250)
+						max_expiration:        maximum expiration duration in milliseconds (default: 2592000)
+						max_value:             maximum value length (default: 1048576)
+						pool_size:             pool size (default: 5)
+						reconnect:             reconnection timeout in milliseconds (default: 10 sec)
+						retries:               number of retries (default: 3)
+						timeout:               default caching timeout in milliseconds (default: 1 minute)
+						failures:              number of failures before stop retrying (default: 5)
+						retry:                 retry timeout in milliseconds (default: 30 sec)
+					idle:                  idle timeout before disconnect in milliseconds (default: 5 sec)</p>
+					<h3 id="references">References</h3>
+					<ul>
+						<li><em>:discovery:</em>:*:1.0        (optional) IDiscovery services to resolve connection</li>
+					</ul>
+					<h3 id="example">Example</h3>
+					<p>let cache = new MemcachedCache();
+						cache.configure(ConfigParams.fromTuples(
+						&quot;host&quot;, &quot;localhost&quot;,
+						&quot;port&quot;, 11211
+					));</p>
+					<p>cache.open(&quot;123&quot;, (err) =&gt; {
+						...
+					});</p>
+					<p>cache.store(&quot;123&quot;, &quot;key1&quot;, &quot;ABC&quot;, (err) =&gt; {
+						cache.store(&quot;123&quot;, &quot;key1&quot;, (err, value) =&gt; {
+						// Result: &quot;ABC&quot;
+						});
+					});</p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -88,39 +135,20 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="memcachedcache.html#constructor" class="tsd-kind-icon">constructor</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="memcachedcache.html#_client" class="tsd-kind-icon">_client</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="memcachedcache.html#_connectionresolver" class="tsd-kind-icon">_connection<wbr>Resolver</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="memcachedcache.html#_failures" class="tsd-kind-icon">_failures</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="memcachedcache.html#_idle" class="tsd-kind-icon">_idle</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="memcachedcache.html#_maxexpiration" class="tsd-kind-icon">_max<wbr>Expiration</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="memcachedcache.html#_maxkeysize" class="tsd-kind-icon">_max<wbr>Key<wbr>Size</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="memcachedcache.html#_maxvalue" class="tsd-kind-icon">_max<wbr>Value</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="memcachedcache.html#_poolsize" class="tsd-kind-icon">_pool<wbr>Size</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="memcachedcache.html#_reconnect" class="tsd-kind-icon">_reconnect</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="memcachedcache.html#_remove" class="tsd-kind-icon">_remove</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="memcachedcache.html#_retries" class="tsd-kind-icon">_retries</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="memcachedcache.html#_retry" class="tsd-kind-icon">_retry</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="memcachedcache.html#_timeout" class="tsd-kind-icon">_timeout</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="cache.memcachedcache.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="memcachedcache.html#checkopened" class="tsd-kind-icon">check<wbr>Opened</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="memcachedcache.html#close" class="tsd-kind-icon">close</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="memcachedcache.html#configure" class="tsd-kind-icon">configure</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="memcachedcache.html#isopened" class="tsd-kind-icon">is<wbr>Opened</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="memcachedcache.html#open" class="tsd-kind-icon">open</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="memcachedcache.html#remove" class="tsd-kind-icon">remove</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="memcachedcache.html#retrieve" class="tsd-kind-icon">retrieve</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="memcachedcache.html#setreferences" class="tsd-kind-icon">set<wbr>References</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="memcachedcache.html#store" class="tsd-kind-icon">store</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="cache.memcachedcache.html#close" class="tsd-kind-icon">close</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="cache.memcachedcache.html#configure" class="tsd-kind-icon">configure</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="cache.memcachedcache.html#isopen" class="tsd-kind-icon">is<wbr>Open</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="cache.memcachedcache.html#open" class="tsd-kind-icon">open</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="cache.memcachedcache.html#remove" class="tsd-kind-icon">remove</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="cache.memcachedcache.html#retrieve" class="tsd-kind-icon">retrieve</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="cache.memcachedcache.html#setreferences" class="tsd-kind-icon">set<wbr>References</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="cache.memcachedcache.html#store" class="tsd-kind-icon">store</a></li>
 							</ul>
 						</section>
 					</div>
@@ -132,181 +160,27 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Memcached<wbr>Cache<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="memcachedcache.html" class="tsd-signature-type">MemcachedCache</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Memcached<wbr>Cache<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="cache.memcachedcache.html" class="tsd-signature-type">MemcachedCache</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/66c27b1/src/cache/MemcachedCache.ts#L26">cache/MemcachedCache.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/327a729/src/cache/MemcachedCache.ts#L74">cache/MemcachedCache.ts:74</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="memcachedcache.html" class="tsd-signature-type">MemcachedCache</a></h4>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a new instance of this cache.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="cache.memcachedcache.html" class="tsd-signature-type">MemcachedCache</a></h4>
 						</li>
 					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_client" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _client</h3>
-					<div class="tsd-signature tsd-kind-icon">_client<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/66c27b1/src/cache/MemcachedCache.ts#L26">cache/MemcachedCache.ts:26</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_connectionresolver" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _connection<wbr>Resolver</h3>
-					<div class="tsd-signature tsd-kind-icon">_connection<wbr>Resolver<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ConnectionResolver</span><span class="tsd-signature-symbol"> =&nbsp;new ConnectionResolver()</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/66c27b1/src/cache/MemcachedCache.ts#L12">cache/MemcachedCache.ts:12</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_failures" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _failures</h3>
-					<div class="tsd-signature tsd-kind-icon">_failures<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;5</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/66c27b1/src/cache/MemcachedCache.ts#L21">cache/MemcachedCache.ts:21</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_idle" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _idle</h3>
-					<div class="tsd-signature tsd-kind-icon">_idle<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;5000</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/66c27b1/src/cache/MemcachedCache.ts#L24">cache/MemcachedCache.ts:24</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_maxexpiration" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _max<wbr>Expiration</h3>
-					<div class="tsd-signature tsd-kind-icon">_max<wbr>Expiration<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;2592000</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/66c27b1/src/cache/MemcachedCache.ts#L15">cache/MemcachedCache.ts:15</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_maxkeysize" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _max<wbr>Key<wbr>Size</h3>
-					<div class="tsd-signature tsd-kind-icon">_max<wbr>Key<wbr>Size<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;250</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/66c27b1/src/cache/MemcachedCache.ts#L14">cache/MemcachedCache.ts:14</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_maxvalue" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _max<wbr>Value</h3>
-					<div class="tsd-signature tsd-kind-icon">_max<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1048576</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/66c27b1/src/cache/MemcachedCache.ts#L16">cache/MemcachedCache.ts:16</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_poolsize" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _pool<wbr>Size</h3>
-					<div class="tsd-signature tsd-kind-icon">_pool<wbr>Size<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;5</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/66c27b1/src/cache/MemcachedCache.ts#L17">cache/MemcachedCache.ts:17</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_reconnect" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _reconnect</h3>
-					<div class="tsd-signature tsd-kind-icon">_reconnect<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;10000</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/66c27b1/src/cache/MemcachedCache.ts#L18">cache/MemcachedCache.ts:18</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_remove" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _remove</h3>
-					<div class="tsd-signature tsd-kind-icon">_remove<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/66c27b1/src/cache/MemcachedCache.ts#L23">cache/MemcachedCache.ts:23</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_retries" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _retries</h3>
-					<div class="tsd-signature tsd-kind-icon">_retries<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;5</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/66c27b1/src/cache/MemcachedCache.ts#L20">cache/MemcachedCache.ts:20</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_retry" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _retry</h3>
-					<div class="tsd-signature tsd-kind-icon">_retry<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;30000</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/66c27b1/src/cache/MemcachedCache.ts#L22">cache/MemcachedCache.ts:22</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_timeout" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _timeout</h3>
-					<div class="tsd-signature tsd-kind-icon">_timeout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;5000</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/66c27b1/src/cache/MemcachedCache.ts#L19">cache/MemcachedCache.ts:19</a></li>
-						</ul>
-					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="checkopened" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> check<wbr>Opened</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">check<wbr>Opened<span class="tsd-signature-symbol">(</span>correlationId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/66c27b1/src/cache/MemcachedCache.ts#L97">cache/MemcachedCache.ts:97</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>callback: <span class="tsd-signature-type">any</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-						</li>
-					</ul>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="close" class="tsd-anchor"></a>
 					<h3>close</h3>
@@ -317,16 +191,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/66c27b1/src/cache/MemcachedCache.ts#L92">cache/MemcachedCache.ts:92</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/327a729/src/cache/MemcachedCache.ts#L170">cache/MemcachedCache.ts:170</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Closes component and frees used resources.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>(optional) transaction id to trace execution through call chain.</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>callback function that receives error or null no errors occured.</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
@@ -361,13 +246,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/66c27b1/src/cache/MemcachedCache.ts#L30">cache/MemcachedCache.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/327a729/src/cache/MemcachedCache.ts#L86">cache/MemcachedCache.ts:86</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Configures component by passing configuration parameters.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>config: <span class="tsd-signature-type">ConfigParams</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>configuration parameters to be set.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -375,19 +268,25 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="isopened" class="tsd-anchor"></a>
-					<h3>is<wbr>Opened</h3>
+					<a name="isopen" class="tsd-anchor"></a>
+					<h3>is<wbr>Open</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">is<wbr>Opened<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Open<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/66c27b1/src/cache/MemcachedCache.ts#L50">cache/MemcachedCache.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/327a729/src/cache/MemcachedCache.ts#L116">cache/MemcachedCache.ts:116</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Checks if the component is opened.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>true if the component has been opened and false otherwise.</p>
 						</li>
 					</ul>
 				</section>
@@ -401,16 +300,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/66c27b1/src/cache/MemcachedCache.ts#L54">cache/MemcachedCache.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/327a729/src/cache/MemcachedCache.ts#L126">cache/MemcachedCache.ts:126</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Opens the component.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>(optional) transaction id to trace execution through call chain.</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>callback function that receives error or null no errors occured.</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
@@ -445,19 +355,33 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/66c27b1/src/cache/MemcachedCache.ts#L122">cache/MemcachedCache.ts:122</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/327a729/src/cache/MemcachedCache.ts#L224">cache/MemcachedCache.ts:224</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes a value from the cache by its key.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>(optional) transaction id to trace execution through call chain.</p>
+									</div>
 								</li>
 								<li>
 									<h5>key: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>a unique value key.</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>(optional) callback function that receives an error or null for success</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
@@ -492,19 +416,34 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/66c27b1/src/cache/MemcachedCache.ts#L107">cache/MemcachedCache.ts:107</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/327a729/src/cache/MemcachedCache.ts#L193">cache/MemcachedCache.ts:193</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Retrieves cached value from the cache using its key.
+									If value is missing in the cache or expired it returns null.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>(optional) transaction id to trace execution through call chain.</p>
+									</div>
 								</li>
 								<li>
 									<h5>key: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>a unique value key.</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>callback function that receives cached value or error.</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
@@ -542,13 +481,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/66c27b1/src/cache/MemcachedCache.ts#L46">cache/MemcachedCache.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/327a729/src/cache/MemcachedCache.ts#L107">cache/MemcachedCache.ts:107</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets references to dependent components.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>references: <span class="tsd-signature-type">IReferences</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>references to locate the component dependencies.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -565,25 +512,45 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/66c27b1/src/cache/MemcachedCache.ts#L114">cache/MemcachedCache.ts:114</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-memcached-node/blob/327a729/src/cache/MemcachedCache.ts#L209">cache/MemcachedCache.ts:209</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Stores value in the cache with expiration time.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>(optional) transaction id to trace execution through call chain.</p>
+									</div>
 								</li>
 								<li>
 									<h5>key: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>a unique value key.</p>
+									</div>
 								</li>
 								<li>
 									<h5>value: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>a value to store.</p>
+									</div>
 								</li>
 								<li>
 									<h5>timeout: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>expiration timeout in milliseconds.</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>(optional) callback function that receives an error or null for success</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
@@ -616,94 +583,58 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/build.html">build</a>
+					</li>
+					<li class="current tsd-kind-external-module">
+						<a href="../modules/cache.html">cache</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/index.html">index</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/lock.html">lock</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class">
-						<a href="defaultmemcachedfactory.html" class="tsd-kind-icon">Default<wbr>Memcached<wbr>Factory</a>
-					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class">
-						<a href="memcachedcache.html" class="tsd-kind-icon">Memcached<wbr>Cache</a>
+					<li class="current tsd-kind-class tsd-parent-kind-external-module">
+						<a href="cache.memcachedcache.html" class="tsd-kind-icon">Memcached<wbr>Cache</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="memcachedcache.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="memcachedcache.html#_client" class="tsd-kind-icon">_client</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="memcachedcache.html#_connectionresolver" class="tsd-kind-icon">_connection<wbr>Resolver</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="memcachedcache.html#_failures" class="tsd-kind-icon">_failures</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="memcachedcache.html#_idle" class="tsd-kind-icon">_idle</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="memcachedcache.html#_maxexpiration" class="tsd-kind-icon">_max<wbr>Expiration</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="memcachedcache.html#_maxkeysize" class="tsd-kind-icon">_max<wbr>Key<wbr>Size</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="memcachedcache.html#_maxvalue" class="tsd-kind-icon">_max<wbr>Value</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="memcachedcache.html#_poolsize" class="tsd-kind-icon">_pool<wbr>Size</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="memcachedcache.html#_reconnect" class="tsd-kind-icon">_reconnect</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="memcachedcache.html#_remove" class="tsd-kind-icon">_remove</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="memcachedcache.html#_retries" class="tsd-kind-icon">_retries</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="memcachedcache.html#_retry" class="tsd-kind-icon">_retry</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="memcachedcache.html#_timeout" class="tsd-kind-icon">_timeout</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="memcachedcache.html#checkopened" class="tsd-kind-icon">check<wbr>Opened</a>
+								<a href="cache.memcachedcache.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="memcachedcache.html#close" class="tsd-kind-icon">close</a>
+								<a href="cache.memcachedcache.html#close" class="tsd-kind-icon">close</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="memcachedcache.html#configure" class="tsd-kind-icon">configure</a>
+								<a href="cache.memcachedcache.html#configure" class="tsd-kind-icon">configure</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="memcachedcache.html#isopened" class="tsd-kind-icon">is<wbr>Opened</a>
+								<a href="cache.memcachedcache.html#isopen" class="tsd-kind-icon">is<wbr>Open</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="memcachedcache.html#open" class="tsd-kind-icon">open</a>
+								<a href="cache.memcachedcache.html#open" class="tsd-kind-icon">open</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="memcachedcache.html#remove" class="tsd-kind-icon">remove</a>
+								<a href="cache.memcachedcache.html#remove" class="tsd-kind-icon">remove</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="memcachedcache.html#retrieve" class="tsd-kind-icon">retrieve</a>
+								<a href="cache.memcachedcache.html#retrieve" class="tsd-kind-icon">retrieve</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="memcachedcache.html#setreferences" class="tsd-kind-icon">set<wbr>References</a>
+								<a href="cache.memcachedcache.html#setreferences" class="tsd-kind-icon">set<wbr>References</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="memcachedcache.html#store" class="tsd-kind-icon">store</a>
+								<a href="cache.memcachedcache.html#store" class="tsd-kind-icon">store</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class">
-						<a href="memcachedlock.html" class="tsd-kind-icon">Memcached<wbr>Lock</a>
-					</li>
 				</ul>
 			</nav>
 		</div>

@@ -1,3 +1,4 @@
+/** @module lock */
 import { ConfigParams } from 'pip-services-commons-node';
 import { IConfigurable } from 'pip-services-commons-node';
 import { IReferences } from 'pip-services-commons-node';
