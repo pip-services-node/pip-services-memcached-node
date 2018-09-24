@@ -4,7 +4,16 @@ const pip_services_components_node_1 = require("pip-services-components-node");
 const pip_services_commons_node_1 = require("pip-services-commons-node");
 const MemcachedCache_1 = require("../cache/MemcachedCache");
 const MemcachedLock_1 = require("../lock/MemcachedLock");
+/**
+ * Creates Redis components by their descriptors.
+ *
+ * @see [[MemcachedCache]]
+ * @see [[MemcachedLock]]
+ */
 class DefaultMemcachedFactory extends pip_services_components_node_1.Factory {
+    /**
+     * Create a new instance of the factory.
+     */
     constructor() {
         super();
         this.registerAsType(DefaultMemcachedFactory.MemcachedCacheDescriptor, MemcachedCache_1.MemcachedCache);
