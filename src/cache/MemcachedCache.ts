@@ -17,44 +17,45 @@ import { ICache } from 'pip-services-components-node';
  * ### Configuration parameters ###
  * 
  * connection(s):           
- *   discovery_key:         (optional) a key to retrieve the connection from [[IDiscovery]]
- *   host:                  host name or IP address
- *   port:                  port number
- *   uri:                   resource URI or connection string with all parameters in it
+ *   - discovery_key:         (optional) a key to retrieve the connection from [[https://rawgit.com/pip-services-node/pip-services-components-node/master/doc/api/interfaces/connect.idiscovery.html IDiscovery]]
+ *   - host:                  host name or IP address
+ *   - port:                  port number
+ *   - uri:                   resource URI or connection string with all parameters in it
+ * 
  * options:
- *   max_size:              maximum number of values stored in this cache (default: 1000)        
- *   max_key_size:          maximum key length (default: 250)
- *   max_expiration:        maximum expiration duration in milliseconds (default: 2592000)
- *   max_value:             maximum value length (default: 1048576)
- *   pool_size:             pool size (default: 5)
- *   reconnect:             reconnection timeout in milliseconds (default: 10 sec)
- *   retries:               number of retries (default: 3)
- *   timeout:               default caching timeout in milliseconds (default: 1 minute)
- *   failures:              number of failures before stop retrying (default: 5)
- *   retry:                 retry timeout in milliseconds (default: 30 sec)
- *   idle:                  idle timeout before disconnect in milliseconds (default: 5 sec)
+ *   - max_size:              maximum number of values stored in this cache (default: 1000)        
+ *   - max_key_size:          maximum key length (default: 250)
+ *   - max_expiration:        maximum expiration duration in milliseconds (default: 2592000)
+ *   - max_value:             maximum value length (default: 1048576)
+ *   - pool_size:             pool size (default: 5)
+ *   - reconnect:             reconnection timeout in milliseconds (default: 10 sec)
+ *   - retries:               number of retries (default: 3)
+ *   - timeout:               default caching timeout in milliseconds (default: 1 minute)
+ *   - failures:              number of failures before stop retrying (default: 5)
+ *   - retry:                 retry timeout in milliseconds (default: 30 sec)
+ *   - idle:                  idle timeout before disconnect in milliseconds (default: 5 sec)
  * 
  * ### References ###
  * 
- * - *:discovery:*:*:1.0        (optional) IDiscovery services to resolve connection
+ * - <code>*:discovery:*:*:1.0</code>        (optional) [[https://rawgit.com/pip-services-node/pip-services-components-node/master/doc/api/interfaces/connect.idiscovery.html IDiscovery]] services to resolve connection
  *
  * ### Example ###
  * 
- * let cache = new MemcachedCache();
- * cache.configure(ConfigParams.fromTuples(
- *   "host", "localhost",
- *   "port", 11211
- * ));
+ *     let cache = new MemcachedCache();
+ *     cache.configure(ConfigParams.fromTuples(
+ *       "host", "localhost",
+ *       "port", 11211
+ *     ));
  * 
- * cache.open("123", (err) => {
- *   ...
- * });
+ *     cache.open("123", (err) => {
+ *       ...
+ *     });
  * 
- * cache.store("123", "key1", "ABC", (err) => {
- *      cache.store("123", "key1", (err, value) => {
- *          // Result: "ABC"
- *      });
- * });
+ *     cache.store("123", "key1", "ABC", (err) => {
+ *          cache.store("123", "key1", (err, value) => {
+ *              // Result: "ABC"
+ *          });
+ *     });
  */
 export class MemcachedCache implements ICache, IConfigurable, IReferenceable, IOpenable {
     private _connectionResolver: ConnectionResolver = new ConnectionResolver();
