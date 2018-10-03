@@ -12,13 +12,12 @@ import { Lock } from 'pip-services-components-node';
  *
  * ### Configuration parameters ###
  *
- * connection(s):
+ * - connection(s):
  *   - discovery_key:         (optional) a key to retrieve the connection from [[https://rawgit.com/pip-services-node/pip-services-components-node/master/doc/api/interfaces/connect.idiscovery.html IDiscovery]]
  *   - host:                  host name or IP address
  *   - port:                  port number
  *   - uri:                   resource URI or connection string with all parameters in it
- *
- * options:
+ * - options:
  *   - retry_timeout:         timeout in milliseconds to retry lock acquisition. (Default: 100)
  *   - max_size:              maximum number of values stored in this cache (default: 1000)
  *   - max_key_size:          maximum key length (default: 250)
@@ -34,7 +33,7 @@ import { Lock } from 'pip-services-components-node';
  *
  * ### References ###
  *
- * - <code>*:discovery:*:*:1.0</code>        (optional) [[https://rawgit.com/pip-services-node/pip-services-components-node/master/doc/api/interfaces/connect.idiscovery.html IDiscovery]] services to resolve connection
+ * - <code>\*:discovery:\*:\*:1.0</code>        (optional) [[https://rawgit.com/pip-services-node/pip-services-components-node/master/doc/api/interfaces/connect.idiscovery.html IDiscovery]] services to resolve connection
  *
  * ### Example ###
  *
